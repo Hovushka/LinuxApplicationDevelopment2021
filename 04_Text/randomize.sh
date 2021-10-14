@@ -41,7 +41,7 @@ IFS=" "
 cat <&4 | shuf - | while read -r sym ypos xpos; do
     sleep $TIMEOUT
     tput cup $ypos $xpos
-    printf "%s" "$sym" | xxd -p -r
+    printf "\\$(printf "%o" "0x$sym")"
 done
 exec 4<&-
 
